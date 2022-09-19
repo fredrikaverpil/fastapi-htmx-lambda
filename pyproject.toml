@@ -1,0 +1,61 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs", "hatch-requirements-txt"]
+build-backend = "hatchling.build"
+
+[project]
+name = "myapi"
+description = 'Demo API with FastAPI and HTMX'
+version = "0.1.0"
+requires-python = ">=3.9"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Fredrik Averpil", email = "fredrik.averpil@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dynamic = ["dependencies"]
+
+# until Python has an officially PEP-supported lockfile mechanism,
+# let's define dependencies with hatch instead, so pip-tools can be used
+# to pin dependencies.
+# dependencies = []
+
+[project.urls]
+Documentation = "https://github.com/fredrikaverpil/hatch-playground#readme"
+Issues = "https://github.com/fredrikaverpil/hatch-playground/issues"
+Source = "https://github.com/fredrikaverpil/hatch-playground"
+
+[tool.hatch.metadata.hooks.requirements_txt]
+filename = "requirements.txt"
+
+[tool.hatch.build.targets.sdist]
+[tool.hatch.build.targets.wheel]
+packages = ["src/myapi"]
+
+[project.optional-dependencies]
+# PEP-440
+lint = [
+  "black",
+  "isort",
+  "flake8==4.*",  # https://github.com/tylerwince/flake8-bandit/issues/33
+  "flake8-bugbear",
+  "flake8-bandit"
+]
+types = [
+  "mypy",
+  "types-freezegun",
+  "types-python-dateutil"
+]
+build = [
+  "build"
+]
+dev = [
+  "myapi[lint,types,build]",
+  "pip-tools",
+]

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MyAPI</title>
+
+    <script src="https://unpkg.com/htmx.org@1.8.0"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <p class="p-6 bg-gray-200">✌️ Hello!</p>
+
+    <div class="p-6">
+        <form hx-post="/api/v1/endpoint" hx-target="#results">
+            <input type="text" name="myquery" placeholder="", class="border">
+            <button hx-trigger="click"></button>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+
+    <div class="p-6 bg-gray-100", id="results"></div>
+
+</body>
+</html>
